@@ -61,13 +61,6 @@ else
     exit 1
 fi
 
-# // IP Address Validating
-if [[ $IP == "" ]]; then
-    echo -e "${EROR} IP Address ( ${YELLOW}Not Detected${NC} )"
-else
-    echo -e "${OK} IP Address ( ${green}$IP${NC} )"
-fi
-
 # // Validate Successfull
 echo ""
 read -p "$( echo -e "Press ${GRAY}[ ${NC}${green}Enter${NC} ${GRAY}]${NC} For Starting Installation") "
@@ -93,44 +86,12 @@ MYIP=$(curl -sS ipv4.icanhazip.com)
 echo -e "\e[32mloading...\e[0m"
 clear
 
-# Valid Script
-VALIDITY () {
-    today=`date -d "0 days" +"%Y-%m-%d"`
-    Exp1=$(curl ${REPO}access/ip | grep $MYIP | awk '{print $4}')
-    if [[ $today < $Exp1 ]]; then
-    echo -e "\e[32mYOUR SCRIPT ACTIVE..\e[0m"
-	VERSIONSC
-    else
-    echo -e "\e[31mScript Anda Telah Expired !!\e[0m";
-    echo -e "\e[31mTolong Renew Script di  @admin\e[0m"
-    exit 0
-fi
-}
-IZIN=$(curl ${REPO}access/ip | awk '{print $5}' | grep $MYIP)
-if [ $MYIP = $IZIN ]; then
-clear
-echo -e "\e[32mPERMISSION ACCEPT...\e[0m"
-sleep 3
-VALIDITY
-clear
-else
-clear
-echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo -e "                PERMISSION DENIED ! "
-echo -e "     Your VPS ${NC}( ${green}$IP${NC} ) ${YELLOW}Has been Banned "
-echo -e "         Buy access permissions for scripts "
-echo -e "                 Contact Admin : CatzBurry"
-echo -e "             ${green}Telegram t.me/catzbury "
-echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo ""
-rm -f premi.sh
-exit 0
 fi
 clear
 #########################
 # USERNAME
 rm -f /usr/bin/user
-username=$(curl ${REPO}access/ip | grep $MYIP | awk '{print $2}')
+username=$(curl | grep $MYIP | awk '{print $2}')
 echo "$username" >/usr/bin/user
 # validity
 rm -f /usr/bin/e
