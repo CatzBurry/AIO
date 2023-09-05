@@ -18,7 +18,7 @@ clear
 # // Exporint IP AddressInformation
 export IP=$( curl -sS ipinfo.io/ip )
 # REPO
-REPO="https://raw.githubusercontent.com/CatzBurry/AIO/main/"
+REPO="https://raw.githubusercontent.com/mofassirmobeen/AIO/main/"
 
 
 # // Clear Data
